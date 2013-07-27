@@ -1,0 +1,6 @@
+[
+  {
+    "repository": "android_device_dell_msm8660-common",
+    "target_path": "device/dell/msm8660-common"
+  }
+]

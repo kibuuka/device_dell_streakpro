@@ -1,0 +1,119 @@
+# GPS
+lib/libcommondefs.so
+lib/libloc_api-rpc-qc.so
+# Lights
+lib/hw/lights.msm8660.so
+# Sensor
+lib/hw/sensors.qcom.so
+lib/libnfc_ndef.so
+# CCI proprietary binaries & libs
+bin/cci_ftm_daemon
+bin/cci_rw_info
+lib/libcciftm.so
+lib/libcci_ps.so
+lib/libaudioalsa.so
+#D'oh - proprietary binaries
+bin/ATFWD-daemon
+bin/CKPD-daemon
+bin/nfc_check
+bin/simple_nfc
+bin/bridgemgrd
+bin/amploader
+bin/hdmid
+bin/fmfc
+bin/fmsvc
+bin/hciattach
+bin/gpsone_daemon
+bin/port-bridge
+bin/profiler_daemon
+bin/qrngd
+bin/qrngtest
+bin/rmt_storage
+bin/thermald
+bin/cnd
+bin/chgonly
+#busybox & su
+#xbin/busybox
+#xbin/su
+# Wifi
+etc/Nvram.txt
+etc/rtecdc_apsta.bin
+etc/rtecdc_ap.bin
+# Bluetoooth
+etc/BCM4329B1_002.002.023.0875.0909.hcd
+lib/libbluedroid.so
+bin/brcm_patchram_plus
+# Camera
+lib/libcamera.so
+lib/liboemcamera.so
+lib/libmmipl.so
+lib/libmmjpeg.so
+# RIL
+bin/rild
+bin/qmiproxy
+bin/qmuxd
+lib/libril.so
+lib/libreference-ril.so
+lib/libreference-cdma-sms.so
+lib/libril-qcril-hook-oem.so
+lib/libril-qc-qmi-1.so
+lib/libqmiservices.so
+lib/libqdp.so
+lib/libqmi.so
+lib/liboem_rapi.so
+lib/liboem_rapi_fusion.so
+# Miscellany
+lib/libacdbloader.so
+lib/libacdbmapper.so
+lib/liboncrpc.so
+lib/libdsm.so
+lib/libqueue.so
+lib/libdiag.so
+lib/libnv.so
+lib/libdsutils.so
+lib/libidl.so
+lib/libdss.so
+# Key layouts, maps and such. NB: kcm.bin format is unsupported since honeycomb - use kcm instead
+usr/icu/icudt44l.dat
+usr/keychars/ffa-keypad_numeric.kcm.bin
+usr/keychars/ffa-keypad_qwerty.kcm.bin
+usr/keychars/fluid-keypad_numeric.kcm.bin
+usr/keychars/fluid-keypad_qwerty.kcm.bin
+usr/keychars/qwerty.kcm.bin
+usr/keychars/qwerty2.kcm.bin
+usr/keylayout/8660_handset.kl
+usr/keylayout/AVRCP.kl
+usr/keylayout/ffa-keypad.kl
+usr/keylayout/fluid-keypad.kl
+usr/keylayout/matrix-keypad.kl
+usr/keylayout/qwerty.kl
+usr/share/bmd/RFFspeed_501.bmd
+usr/share/bmd/RFFstd_501.bmd
+# Etc
+etc/01_qcomm_omx.cfg
+etc/vold.fstab
+etc/init.goldfish.sh
+etc/init.qcom.bt.sh
+etc/init.qcom.coex.sh
+etc/init.qcom.fm.sh
+etc/init.qcom.mdm_links.sh
+etc/init.qcom.modem_links.sh
+etc/init.qcom.post_boot.sh
+etc/init.qcom.sdio.sh
+etc/loc_parameter.ini
+etc/firmware/cyttsp_8660_fluid_p2.hex
+etc/firmware/cyttsp_8660_fluid_p3.hex
+# Icons for chgonly
+etc/chgicon/Charging_0.png
+etc/chgicon/Charging_0_x.png
+etc/chgicon/Charging_1.png
+etc/chgicon/Charging_10.png
+etc/chgicon/Charging_100.png
+etc/chgicon/Charging_20.png
+etc/chgicon/Charging_30.png
+etc/chgicon/Charging_40.png
+etc/chgicon/Charging_50.png
+etc/chgicon/Charging_60.png
+etc/chgicon/Charging_70.png
+etc/chgicon/Charging_80.png
+etc/chgicon/Charging_90.png
