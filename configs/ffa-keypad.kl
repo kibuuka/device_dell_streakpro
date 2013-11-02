@@ -102,7 +102,7 @@ key 528   BACK
 key 355   CLEAR
 key 78   PLUS
 key 117   EQUALS
-key 248   WAP
+#key 248   WAP
 key 249   KPTT
 key 250   SPK_PHN
 key 251   TASK

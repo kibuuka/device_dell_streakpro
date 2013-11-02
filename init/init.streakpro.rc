@@ -10,19 +10,46 @@ on early-init
 
     export EXTERNAL_STORAGE /storage/sdcard0
 
-    # load msm8660 firmware so things have time to initialize
-    rm /vendor
-    mkdir /vendor 0771 system system
-    mkdir /vendor/firmware 0771 system system
-    mkdir /vendor/firmware/misc 0771 system system
-    mkdir /vendor/firmware/adsp 0771 system system
-
-    # Force loading of modem and Q6 images
-    write /dev/smd_pkt_loopback 1
-
+# [DA80] ===> BugID#781 : CCI partition, modified by Jimmy@CCI
+    mkdir /persist 0771 system system
+    mkdir /flex 0771 system system
+    mkdir /ftm 0775 diag diag
+    mkdir /oem 0775 system system
+    mkdir /firmware 0771 system system
+# [DA80] <=== BugID#781 : CCI partition, modified by Jimmy@CCI
+    mkdir /tombstones 0771 system system
+  
 on init
-mount_all /fstab.streakpro
-#HTC    mkdir /devlog 0700 root root
+# mount all mmc partitions
+    wait /dev/block/mmcblk0p17
+    mount ext4 /dev/block/mmcblk0p17 /system ro barrier=1
+    wait /dev/block/mmcblk0p26
+    mount ext4 /dev/block/mmcblk0p26 /data nosuid nodev barrier=1 noauto_da_alloc
+    wait /dev/block/mmcblk0p19
+    mount ext4 /dev/block/mmcblk0p19 /persist nosuid nodev barrier=1
+    wait /dev/block/mmcblk0p20
+    mount ext4 /dev/block/mmcblk0p20 /cache nosuid nodev barrier=1
+    wait /dev/block/mmcblk0p18
+    mount ext4 /dev/block/mmcblk0p18 /flex ro barrier=1
+    wait /dev/block/mmcblk0p7
+    mount ext4 /dev/block/mmcblk0p7 /ftm rw barrier=1
+    wait /dev/block/mmcblk0p25
+    mount ext4 /dev/block/mmcblk0p25 /oem rw barrier=1
+    wait /dev/block/mmcblk0p1
+    mount vfat /dev/block/mmcblk0p1 /firmware ro shortname=lower
+    exec /system/bin/sh /system/etc/init.qcom.modem_links.sh
+# Force loading of modem and Q6 images
+    write /dev/smd_pkt_loopback 1
+# [DA80] ===> BugID#781 : CCI partition, modified by Jimmy@CCI
+# QCT original partition
+#    mount ext4 /dev/block/mmcblk0p16 /tombstones nosuid nodev barrier=1
+# DA80 partition table
+   mount ext4 /dev/block/mmcblk0p21 /tombstones nosuid nodev barrier=1
+# [DA80] <=== BugID#781 : CCI partition, modified by Jimmy@CCI
+   mkdir /tombstones/modem 0771 system system
+   mkdir /tombstones/mdm 0771 system system
+   mkdir /tombstones/lpass 0771 system system
+
 #leon, add for enable/disable ramdump mode dymanically according to flex
     setprop ro.RECOVERY 0
 
@@ -31,14 +58,7 @@ mount_all /fstab.streakpro
     mkdir /mnt/sdcard/sdcard2 0000 system system
 # E: Robert, 20110801, QCT8x60_CR570
 
-# [DA80] ===> BugID#781 : CCI partition, modified by Jimmy@CCI
-# QCT original partition table(duplicated line)
-#     mkdir /persist 0771 system system
-# DA80 partition table
-    mkdir /flex 0771 system system
-    mkdir /ftm 0775 diag diag
-    mkdir /oem 0775 system system
-# [DA80] <=== BugID#781 : CCI partition, modified by Jimmy@CCI
+
 
 on fs
     exec /system/bin/e2fsck -p /dev/block/mmcblk0p7
@@ -53,6 +73,7 @@ on fs
 
     mkdir /vendor/etc 0771 system system
     symlink /system/vendor/etc/audio_effects.conf /vendor/etc/audio_effects.conf
+    symlink /system/vendor/etc/audio_policy.conf /vendor/etc/audio_policy.conf
 
 on post-fs
 # [DA80] ===> BugID#789 : CCI KLog Collector, added by Jimmy@CCI
@@ -121,6 +142,7 @@ on boot
     # radio
     mkdir /data/radio 2770 radio radio
 
+
     # liblights
     chown system system /sys/class/leds/white/brightness
     chown system system /sys/class/leds/green/device/grpfreq
@@ -182,7 +204,7 @@ service netmgrd /system/bin/netmgrd
 service p2p_supplicant /system/bin/wpa_supplicant -Dnl80211 -iwlan0 -c /data/misc/wifi/wpa_supplicant.conf
     user root
     group wifi inet
-    socket wpa_wlan0 dgram 0660 wifi wifi
+    socket wlan0 dgram 0660 wifi wifi
     disabled
     oneshot
 
@@ -208,7 +230,7 @@ service rmt_storage /system/bin/rmt_storage /dev/block/mmcblk0p26 /dev/block/mmc
 service wpa_supplicant /system/bin/wpa_supplicant -Dnl80211 -iwlan0 -c /data/misc/wifi/wpa_supplicant.conf
     user root
     group wifi inet
-    socket wpa_wlan0 dgram 660 wifi wifi
+    socket wlan0 dgram 660 wifi wifi
     disabled
     oneshot
 

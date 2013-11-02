@@ -14,6 +14,7 @@
 # limitations under the License.
 #
 
+$(call inherit-product, $(SRC_TARGET_DIR)/product/full_base.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 
@@ -22,7 +23,7 @@ $(call inherit-product, device/dell/msm8660-common/msm8660.mk)
 
 DEVICE_PACKAGE_OVERLAYS += device/dell/streakpro/overlay
 
-#Trying to make adb working before buooting into gui
+#Trying to make adb working prior to booting into gui
 ADDITIONAL_DEFAULT_PROPERTIES += \
 	ro.secure=0 \
 	ro.adb.secure=0 \
@@ -43,6 +44,7 @@ PRODUCT_COPY_FILES += device/common/gps/gps.conf_EU:system/etc/gps.conf
 # Wifi Calling
 PRODUCT_PACKAGES += \
     GanOptimizer
+
 
 # Inherit non-open-source blobs.
 $(call inherit-product-if-exists, vendor/dell/streakpro/streakpro-vendor.mk)
@@ -66,6 +68,7 @@ PRODUCT_COPY_FILES += \
 
 # Configuration
 PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/configs/surf_keypad_mute.kl:system/usr/keylayout/surf_keypad_mute.kl \
     $(LOCAL_PATH)/configs/8660_handset.kl:system/usr/keylayout/8660_handset.kl \
     $(LOCAL_PATH)/configs/ffa-keypad.kl:system/usr/keylayout/ffa-keypad.kl \
     $(LOCAL_PATH)/configs/fluid-keypad.kl:system/usr/keylayout/fluid-keypad.kl \

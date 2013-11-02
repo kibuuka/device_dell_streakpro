@@ -57,7 +57,9 @@
 /dev/pmem_adsp*           0660   system     audio
 /dev/pmem_smipool*        0660   system     camera
 /dev/pmem_camera*         0660   system     camera
-/dev/oncrpc/*             0660   root       qcom_oncrpc
+#/dev/oncrpc/*             0777   root       qcom_oncrpc
+/dev/oncrpc               0777   radio      system
+/dev/oncrpc/*             0777   radio      system
 /dev/adsp/*               0660   system     audio
 /dev/snd/*                0660   system     audio
 /dev/mt9t013              0660   system     system
@@ -127,6 +129,7 @@
 /dev/block/mmcblk0p19     0660   system     system
 /dev/block/mmcblk0p20     0660   system     system
 /dev/block/mmcblk0p21     0660   system     system
+/dev/block/mmcblk0p5      0666   root       root
 /dev/usb_accessory        0660   root       usb
 
 # CDMA radio interface MUX
@@ -163,3 +166,6 @@
 # [DA80] ===> BugID#789 : CCI KLog Collector, modified by Jimmy@CCI
 /dev/cklc                 0666   system     system
 # [DA80] <=== BugID#789 : CCI KLog Collector, modified by Jimmy@CCI
+
+#wifi
+/dev/rfkill               0660  root         wifi
