@@ -26,6 +26,6 @@
 # IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 # B: Robert, 20110801, QCT8x60_CR570 : Dual SD Card support (Internal eMMC Partition and External SD)
-dev_mount sdcard /mnt/sdcard auto /devices/platform/msm_sdcc.1/mmc_host
-dev_mount sdcard2 /mnt/sdcard/sdcard2 auto /devices/platform/msm_sdcc.3/mmc_host
+dev_mount sdcard0 /storage/sdcard0 27 /devices/platform/msm_sdcc.1/mmc_host/mmc0 nonremovable
+dev_mount sdcard1 /storage/sdcard1 auto /devices/platform/msm_sdcc.3/mmc_host/mmc1
 # E: Robert, 20110801, QCT8x60_CR570

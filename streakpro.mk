@@ -52,19 +52,19 @@ $(call inherit-product-if-exists, vendor/dell/streakpro/streakpro-vendor.mk)
 DEVICE_PACKAGE_OVERLAYS += device/dell/streakpro/overlay
 
 
-# Init file
+# Ramdisk files
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/init/init.rc:root/init.rc \
-    $(LOCAL_PATH)/init/init.streakpro.rc:root/init.streakpro.rc \
-    $(LOCAL_PATH)/init/fstab.streakpro:root/fstab.streakpro \
-    $(LOCAL_PATH)/init/init.streakpro.usb.rc:root/init.streakpro.usb.rc \
-    $(LOCAL_PATH)/init/ueventd.rc:root/ueventd.rc \
-    $(LOCAL_PATH)/init/init.qcom.rc:root/init.qcom.rc \
-    $(LOCAL_PATH)/init/init.qcom.sh:root/init.qcom.sh \
-    $(LOCAL_PATH)/init/init.chgonly.rc:root/init.chgonly.rc \
-    $(LOCAL_PATH)/init/init.target.rc:root/init.target.rc \
-    $(LOCAL_PATH)/init/init.goldfish.rc:root/init.goldfish.rc \
-    $(LOCAL_PATH)/init/default.prop:root/default.prop
+    $(LOCAL_PATH)/ramdisk/init.streakpro.rc:root/init.streakpro.rc \
+    $(LOCAL_PATH)/ramdisk/fstab.streakpro:root/fstab.streakpro \
+    $(LOCAL_PATH)/ramdisk/init.streakpro.usb.rc:root/init.streakpro.usb.rc \
+    $(LOCAL_PATH)/ramdisk/ueventd.streakpro.rc:root/ueventd.streakpro.rc \
+    $(LOCAL_PATH)/ramdisk/init.qcom.sh:root/init.qcom.sh \
+    $(LOCAL_PATH)/ramdisk/init.chgonly.rc:root/init.chgonly.rc \
+    $(LOCAL_PATH)/ramdisk/default.prop:root/default.prop
+# #   $(LOCAL_PATH)/ramdisk/init.rc:root/init.rc \
+# #   $(LOCAL_PATH)/ramdisk/init.qcom.rc:root/init.qcom.rc \
+# #   $(LOCAL_PATH)/ramdisk/init.target.rc:root/init.target.rc \
+# #   $(LOCAL_PATH)/ramdisk/init.goldfish.rc:root/init.goldfish.rc \
 
 # Configuration
 PRODUCT_COPY_FILES += \
@@ -82,14 +82,14 @@ PRODUCT_COPY_FILES += \
 
 
 # Wifi
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/wifi/wpa_supplicant.conf:system/etc/wifi/wpa_supplicant.conf
+#PRODUCT_COPY_FILES += \
+#    $(LOCAL_PATH)/wifi/wpa_supplicant.conf:system/etc/wifi/wpa_supplicant.conf
 #    $(LOCAL_PATH)/wifi/dhd.ko:system/lib/modules/dhd.ko
 
 
 # Sensor
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/libs/sensors.qcom.so:system/lib/hw/sensors.qcom.so
+    $(LOCAL_PATH)/libs/sensors.qcom.so:system/lib/hw/sensors.msm8660.so
 
 
 # Media Profile

@@ -36,6 +36,8 @@ bin/rmt_storage
 bin/simple_nfc
 bin/thermald
 bin/v4l2-qcamera-app
+bin/wiperiface
+bin/wlan_addr
 etc/01_qcomm_omx.cfg
 etc/BCM4329B1_002.002.023.0875.0909.hcd
 etc/chgicon/Charging_0.png
@@ -68,7 +70,7 @@ etc/rtecdc_apsta.bin
 etc/thermald.conf
 etc/vold.fstab
 lib/hw/lights.msm8660.so
-lib/hw/sensors.qcom.so
+lib/hw/sensors.msm8660.so
 lib/libacdbloader.so
 lib/libpng.so
 lib/libacdbmapper.so
@@ -145,6 +147,7 @@ usr/keychars/fluid-keypad_numeric.kcm.bin
 usr/keychars/fluid-keypad_qwerty.kcm.bin
 usr/keychars/qwerty2.kcm.bin
 usr/keychars/qwerty.kcm.bin
+usr/keylayout/atmel-touchscreen.kl
 usr/keylayout/8660_handset.kl
 usr/keylayout/AVRCP.kl
 usr/keylayout/ffa-keypad.kl

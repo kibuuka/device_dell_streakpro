@@ -27,14 +27,16 @@
 
 # mount point	fstype		device			[device2]
 
-/firmware	vfat		/dev/block/mmcblk0p1
-/ftm		emmc		/dev/block/mmcblk0p7
-/boot		emmc		/dev/block/mmcblk0p15
-/recovery	ext4		/dev/block/mmcblk0p16
-/system		ext4		/dev/block/mmcblk0p17
-/flex		ext4		/dev/block/mmcblk0p18
-/persist	ext4		/dev/block/mmcblk0p19
-/cache		ext4		/dev/block/mmcblk0p20
-/tombstones 	ext4		/dev/block/mmcblk0p21
-/data		ext4		/dev/block/mmcblk0p26
-/sdcard		vfat		/dev/block/mmcblk1p1	/dev/block/mmcblk1
+#/firmware	vfat		/dev/block/mmcblk0p1
+#/tombstones 	ext4		/dev/block/mmcblk0p21
+#/boot		emmc		/dev/block/mmcblk0p15
+#/recovery	ext4		/dev/block/mmcblk0p16
+#/sdcard		vfat		/dev/block/mmcblk1p1	/dev/block/mmcblk1
+#/ftm		emmc		/dev/block/mmcblk0p7	rw,barrier=1	wait
+/system		ext4		/dev/block/mmcblk0p17	ro,data=ordered,noauto_da_alloc				wait
+/flex		ext4		/dev/block/mmcblk0p18	ro,barrier=1	wait
+/persist	ext4		/dev/block/mmcblk0p19	nosuid,nodev,barrier=1	wait
+/cache		ext4		/dev/block/mmcblk0p20	noatime,nosuid,nodev,data=ordered,noauto_da_alloc	wait
+/data		ext4		/dev/block/mmcblk0p26	noatime,nosuid,nodev,data=ordered,noauto_da_alloc	wait
+/oem		ext4		/dev/block/mmcblk0p25	rw,barrier=1	wait
+

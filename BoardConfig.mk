@@ -35,7 +35,8 @@ TARGET_BOOTLOADER_BOARD_NAME := streakpro
 CCI_TARGET_KLOG_COLLECTOR := false
 BOARD_KERNEL_BASE    := 0x40200000
 BOARD_KERNEL_PAGESIZE := 2048
-BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.hardware=qcom
+BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.hardware=streakpro
+#BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.hardware=qcom
 # In fact, this ^^^ seem to be unneeded for kernel to start (checked against linux-2.6.35.14-perf) successfully. Rest (commented variant below) of kernel boot params seem to be
 # substituted/set by aboot/lk
 #BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.hardware=qcom androidboot.emmc=true androidboot.hw_id=5 androidboot.serialno=305da7 androidboot.baseband=msm
@@ -43,8 +44,8 @@ BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.hardware=qcom
 #TARGET_PREBUILT_RECOVERY_KERNEL := device/dell/streakpro/recovery_kernel
 
 #WiFi
--include device/dell/msm8660-common/bcmdhd.mk
-#-include device/dell/msm8660-common/bcm4329.mk
+#-include device/dell/msm8660-common/bcmdhd.mk
+-include device/dell/msm8660-common/bcm4329.mk
 
 # QCOM Gralloc/Copybit/HWcomposer
 TARGET_USES_OVERLAY := false
