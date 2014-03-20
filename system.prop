@@ -1,4 +1,5 @@
 ro.sf.lcd_density=240
+mobiledata.interfaces=rmnet0
 ro.telephony.ril_class=QualcommSharedRIL
 rild.libpath=/system/lib/libril-qc-qmi-1.so
 rild.libargs=-d /dev/smd0
@@ -14,3 +15,10 @@ persist.rild.nitz_short_ons_3=
 ril.subscription.types=NV,RUIM
 ro.product.carrier=
 wifi.interface=eth0
+dalvik.vm.heapstartsize=8m
+dalvik.vm.heapgrowthlimit=64m
+dalvik.vm.heapsize=256m
+dalvik.vm.heaptargetutilization=0.75
+dalvik.vm.heapminfree=2m
+dalvik.vm.heapmaxfree=8m
+dalvik.vm.stack-trace-file=/data/anr/traces.txt

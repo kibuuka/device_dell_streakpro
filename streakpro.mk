@@ -14,7 +14,6 @@
 # limitations under the License.
 #
 
-$(call inherit-product, $(SRC_TARGET_DIR)/product/full_base.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 
@@ -40,11 +39,6 @@ PRODUCT_PACKAGES += \
     lights.streakpro
 ## The gps config appropriate for this device
 PRODUCT_COPY_FILES += device/common/gps/gps.conf_EU:system/etc/gps.conf
-
-# Wifi Calling
-PRODUCT_PACKAGES += \
-    GanOptimizer
-
 
 # Inherit non-open-source blobs.
 $(call inherit-product-if-exists, vendor/dell/streakpro/streakpro-vendor.mk)
