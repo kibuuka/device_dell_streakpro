@@ -21,40 +21,53 @@
 #
 
 # inherit from common msm8660
--include device/htc/msm8660-common/BoardConfigCommon.mk
+-include device/dell/msm8660-common/BoardConfigCommon.mk
 
 # Bootloader
-TARGET_BOOTLOADER_BOARD_NAME := pyramid
+TARGET_BOOTLOADER_BOARD_NAME := streakpro
 
 # Kernel [Settings]
-BOARD_KERNEL_BASE := 0x48000000
+CCI_TARGET_KLOG_COLLECTOR := false
+BOARD_KERNEL_BASE := 0x40200000
 BOARD_KERNEL_PAGE_SIZE := 2048
-BOARD_KERNEL_CMDLINE := console=ttyHSL0 androidboot.hardware=pyramid no_console_suspend=1 androidboot.selinux=permissive
+BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.hardware=streakpro no_console_suspend=1 androidboot.selinux=permissive
+#BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.hardware=qcom
+# In fact, this ^^^ seem to be unneeded for kernel to start (checked against linux-2.6.35.14-perf) successfully. Rest (commented variant below) of kernel boot params seem to be
+# substituted/set by aboot/lk
+#BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.hardware=qcom androidboot.emmc=true androidboot.hw_id=5 androidboot.serialno=305da7 androidboot.baseband=msm
+#TARGET_PREBUILT_KERNEL := device/dell/streakpro/kernel
+#TARGET_PREBUILT_RECOVERY_KERNEL := device/dell/streakpro/recovery_kernel
 
 # Kernel [Build]
-TARGET_KERNEL_CONFIG := pyramid_defconfig
+TARGET_KERNEL_CONFIG := da80_defconfig
 TARGET_KERNEL_CUSTOM_TOOLCHAIN := linaro-arm-cortex-a8
 TARGET_KERNEL_CUSTOM_TOOLCHAIN_SUFFIX := arm-cortex_a8-linux-gnueabi
 BUILD_KERNEL := true
 
 # Bluetooth/Wifi
--include device/htc/msm8660-common/bcmdhd.mk
+#-include device/dell/msm8660-common/bcmdhd.mk
+-include device/dell/msm8660-common/bcm4329.mk
 
 # Qcom GPS
-BOARD_VENDOR_QCOM_GPS_LOC_API_HARDWARE := pyramid
+BOARD_VENDOR_QCOM_GPS_LOC_API_HARDWARE := streakpro
 
 # RIL
 BOARD_USES_LEGACY_RIL := true
 
 # Recovery
-TARGET_RECOVERY_FSTAB = device/htc/pyramid/ramdisk/fstab.pyramid
-TARGET_RECOVERY_PIXEL_FORMAT := "BGRA_8888"
+TARGET_RECOVERY_FSTAB = device/dell/streakpro/ramdisk/fstab.streakpro
+TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
 RECOVERY_FSTAB_VERSION := 2
 
 # Filesystem
 TARGET_USERIMAGES_USE_EXT4 := true
-BOARD_BOOTIMAGE_PARTITION_SIZE := 16777216
-BOARD_RECOVERYIMAGE_PARTITION_SIZE := 16776192
-BOARD_SYSTEMIMAGE_PARTITION_SIZE := 838859776
-BOARD_USERDATAIMAGE_PARTITION_SIZE := 1252770816
-BOARD_FLASH_BLOCK_SIZE := 262144
+TARGET_USES_UNCOMPRESSED_KERNEL := false
+TARGET_USES_LAUNCHER_V1 := true
+BOARD_BOOTIMAGE_PARTITION_SIZE := 0x00A00000
+BOARD_RECOVERYIMAGE_PARTITION_SIZE := 0x00A00000
+BOARD_SYSTEMIMAGE_PARTITION_SIZE := 402653184
+BOARD_USERDATAIMAGE_PARTITION_SIZE := 1073725440
+BOARD_PERSISTIMAGE_PARTITION_SIZE := 5242880
+BOARD_CACHEIMAGE_PARTITION_SIZE := 4096000
+BOARD_TOMBSTONESIMAGE_PARTITION_SIZE := 73400320
+BOARD_FLASH_BLOCK_SIZE := 131072 # (BOARD_KERNEL_PAGESIZE * 64)

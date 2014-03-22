@@ -2,6 +2,6 @@
 
 set -e
 
-export DEVICE=pyramid
-export VENDOR=htc
+export DEVICE=streakpro
+export VENDOR=dell
 ../msm8660-common/extract-files.sh $@

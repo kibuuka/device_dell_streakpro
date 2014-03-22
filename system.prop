@@ -1,4 +1,10 @@
+#
+# Streakpro system.prop
+#
 ro.sf.lcd_density=240
+#
+# NETWORK/DATA/RADIO
+#
 mobiledata.interfaces=rmnet0
 ro.telephony.ril_class=QualcommSharedRIL
 rild.libpath=/system/lib/libril-qc-qmi-1.so
@@ -15,6 +21,29 @@ persist.rild.nitz_short_ons_3=
 ril.subscription.types=NV,RUIM
 ro.product.carrier=
 wifi.interface=eth0
+wifi.supplicant_scan_interval=160
+#
+# Power Saving/Sleep
+#
+ro.ril.disable.power.collapse=0
+pm.sleep_mode=1
+#
+# Misc
+#
+persist.sys.usb.config=mass_storage,adb
+ro.vold.umsdirtyratio=50
+#
+# Disable-kernel-error-report
+#
+ro.kernel.android.checkjni=0
+ro.kernel.checkjni=0
+#
+# Scrolling-Tweaks
+#
+windowsmgr.max_events_per_sec=150
+ro.max.fling_velocity=12000
+ro.min.fling_velocity=8000
+view.scroll_friction=0
 dalvik.vm.heapstartsize=8m
 dalvik.vm.heapgrowthlimit=64m
 dalvik.vm.heapsize=256m
@@ -22,3 +51,6 @@ dalvik.vm.heaptargetutilization=0.75
 dalvik.vm.heapminfree=2m
 dalvik.vm.heapmaxfree=8m
 dalvik.vm.stack-trace-file=/data/anr/traces.txt
+#
+# END_STREAKPRO_SYSTEM_PROPERTIES
+#

@@ -1,5 +1,5 @@
 #
-# Copyright (C) 2011 The CyanogenMod Project
+# Copyright (C) 2013 The CyanogenMod Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,15 +14,16 @@
 # limitations under the License.
 #
 
-$(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
-$(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 
 # common msm8660 configs
 $(call inherit-product, device/dell/msm8660-common/msm8660.mk)
 
+$(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
+$(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
+
 DEVICE_PACKAGE_OVERLAYS += device/dell/streakpro/overlay
 
-#Trying to make adb working prior to booting into gui
+# Test, remove this in stable builds
 ADDITIONAL_DEFAULT_PROPERTIES += \
 	ro.secure=0 \
 	ro.adb.secure=0 \
@@ -30,8 +31,6 @@ ADDITIONAL_DEFAULT_PROPERTIES += \
 	ro.debuggable=1 \
 	persist.service.adb.enable=1
 
-# The gps config appropriate for this device
-$(call inherit-product, device/common/gps/gps_us_supl.mk)
 
 # GPS and Light
 PRODUCT_PACKAGES += \
@@ -40,13 +39,17 @@ PRODUCT_PACKAGES += \
 ## The gps config appropriate for this device
 PRODUCT_COPY_FILES += device/common/gps/gps.conf_EU:system/etc/gps.conf
 
+# Bluetooth firmware
+$(call inherit-product, device/htc/msm8660-common/bcm_hcd.mk)
+
+$(call inherit-product-if-exists, hardware/broadcom/wlan/bcmdhd/firmware/bcm4329/device-bcm.mk)
 # Inherit non-open-source blobs.
 $(call inherit-product-if-exists, vendor/dell/streakpro/streakpro-vendor.mk)
 
 DEVICE_PACKAGE_OVERLAYS += device/dell/streakpro/overlay
 
 
-# Ramdisk files
+# Boot ramdisk setup
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/ramdisk/init.streakpro.rc:root/init.streakpro.rc \
     $(LOCAL_PATH)/ramdisk/fstab.streakpro:root/fstab.streakpro \
@@ -55,12 +58,13 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/ramdisk/init.qcom.sh:root/init.qcom.sh \
     $(LOCAL_PATH)/ramdisk/init.chgonly.rc:root/init.chgonly.rc \
     $(LOCAL_PATH)/ramdisk/default.prop:root/default.prop
-# #   $(LOCAL_PATH)/ramdisk/init.rc:root/init.rc \
-# #   $(LOCAL_PATH)/ramdisk/init.qcom.rc:root/init.qcom.rc \
-# #   $(LOCAL_PATH)/ramdisk/init.target.rc:root/init.target.rc \
-# #   $(LOCAL_PATH)/ramdisk/init.goldfish.rc:root/init.goldfish.rc \
 
-# Configuration
+
+# Some misc configuration files
+PRODUCT_COPY_FILES += \
+    device/dell/streakpro/configs/99kernel:system/etc/init.d/99kernel
+
+# Keylayouts and Keychars
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/surf_keypad_mute.kl:system/usr/keylayout/surf_keypad_mute.kl \
     $(LOCAL_PATH)/configs/8660_handset.kl:system/usr/keylayout/8660_handset.kl \
@@ -71,7 +75,10 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/ffa-keypad_qwerty.kcm.bin:system/usr/keychars/ffa-keypad_qwerty.kcm.bin \
     $(LOCAL_PATH)/configs/fluid-keypad_numeric.kcm.bin:system/usr/keychars/fluid-keypad_numeric.kcm.bin \
     $(LOCAL_PATH)/configs/fluid-keypad_qwerty.kcm.bin:system/usr/keychars/fluid-keypad_qwerty.kcm.bin \
-    $(LOCAL_PATH)/configs/vold.fstab:system/etc/vold.fstab 
+
+# Vold.fstab
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/configs/vold.fstab:system/etc/vold.fstab \
     
 
 
@@ -93,26 +100,29 @@ PRODUCT_COPY_FILES += \
 # APN
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/apns-conf.xml:system/etc/apns-conf.xml
-       
-# Vsync
-#PRODUCT_COPY_FILES += \
-#    $(LOCAL_PATH)/libs/vsync.ko:system/lib/modules/vsync.ko
 
-$(call inherit-product, build/target/product/full.mk)
-
-# Additional (as os msm8660) permissions
+# Permissions
 PRODUCT_COPY_FILES += \
-    frameworks/native/data/etc/android.hardware.telephony.gsm.xml:system/etc/permissions/android.hardware.telephony.gsm.xml \
-    frameworks/native/data/etc/android.software.sip.xml:system/etc/permissions/android.software.sip.xml \
-    frameworks/native/data/etc/android.hardware.touchscreen.multitouch.jazzhand.xml:system/etc/permissions/android.hardware.touchscreen.multitouch.jazzhand.xml
-  
+    frameworks/native/data/etc/android.hardware.telephony.gsm.xml:system/etc/permissions/android.hardware.telephony.gsm.xml
+
+# Adreno Drivers
+PRODUCT_COPY_FILES += \
+    device/dell/streakpro/firmware/a225_pfp.fw:system/etc/firmware/a225_pfp.fw \
+    device/dell/streakpro/firmware/a225_pm4.fw:system/etc/firmware/a225_pm4.fw \
+    device/dell/streakpro/firmware/a225p5_pm4.fw:system/etc/firmware/a225p5_pm4.fw \
+    device/dell/streakpro/firmware/yamato_pfp.fw:system/etc/firmware/yamato_pfp.fw \
+    device/dell/streakpro/firmware/yamato_pm4.fw:system/etc/firmware/yamato_pm4.fw
+
+## misc
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.setupwizard.enable_bypass=1 \
+    dalvik.vm.lockprof.threshold=500 \
+    ro.com.google.locationfeatures=1 \
+    dalvik.vm.dexopt-flags=m=y
 
 
+$(call inherit-product, frameworks/native/build/phone-xhdpi-1024-dalvik-heap.mk)
 
-
-
+# Device ID
 PRODUCT_NAME := cm_streakpro
-PRODUCT_BRAND := dell
 PRODUCT_DEVICE := streakpro
-PRODUCT_MODEL := Dell Streak Pro
-PRODUCT_MANUFACTURER := DELL
