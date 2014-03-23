@@ -1,0 +1,4 @@
+#!/system/bin/sh
+pm enable com.android.providers.media/com.android.providers.media.MediaScannerReceiver
+am broadcast -a android.intent.action.MEDIA_MOUNTED -d file:///storage/sdcard0
+pm disable com.android.providers.media/com.android.providers.media.MediaScannerReceiver
