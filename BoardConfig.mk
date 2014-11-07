@@ -31,6 +31,7 @@ CCI_TARGET_KLOG_COLLECTOR := false
 BOARD_KERNEL_BASE := 0x40200000
 BOARD_KERNEL_PAGE_SIZE := 2048
 BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.hardware=streakpro no_console_suspend=1 androidboot.selinux=permissive
+#CM11 - no boot, checking...
 #BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.hardware=qcom
 # In fact, this ^^^ seem to be unneeded for kernel to start (checked against linux-2.6.35.14-perf) successfully. Rest (commented variant below) of kernel boot params seem to be
 # substituted/set by aboot/lk
@@ -40,8 +41,8 @@ BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.hardware=streakpro
 
 # Kernel [Build]
 TARGET_KERNEL_CONFIG := da80_defconfig
-TARGET_KERNEL_CUSTOM_TOOLCHAIN := linaro-arm-cortex-a8
-TARGET_KERNEL_CUSTOM_TOOLCHAIN_SUFFIX := arm-cortex_a8-linux-gnueabi
+#TARGET_KERNEL_CUSTOM_TOOLCHAIN := linaro-4.8
+#TARGET_KERNEL_CUSTOM_TOOLCHAIN_SUFFIX := arm-cortex_a8-linux-gnueabi
 BUILD_KERNEL := true
 
 # Bluetooth/Wifi
@@ -55,7 +56,7 @@ BOARD_VENDOR_QCOM_GPS_LOC_API_HARDWARE := streakpro
 BOARD_USES_LEGACY_RIL := true
 
 # Recovery
-TARGET_RECOVERY_FSTAB = device/dell/streakpro/ramdisk/fstab.streakpro
+TARGET_RECOVERY_FSTAB = device/dell/streakpro/ramdisk/recovery.fstab
 TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
 RECOVERY_FSTAB_VERSION := 2
 

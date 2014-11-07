@@ -42,7 +42,6 @@ key 113   MENU              WAKE_DROPPED
 # Add Home key and  CAMERA_FOCUS key can wake up system
 key 128   HOME              WAKE
 key 211   FOCUS             WAKE
-
 key 16    Q
 key 17    W
 key 18    E
@@ -56,7 +55,6 @@ key 25    P
 key 26    LEFT_BRACKET
 key 27    RIGHT_BRACKET
 key 43    BACKSLASH
-
 key 30    A
 key 31    S
 key 32    D
@@ -69,7 +67,6 @@ key 38    L
 key 39    SEMICOLON
 key 40    APOSTROPHE
 key 14    DEL
-        
 key 44    Z
 key 45    X
 key 46    C
@@ -81,7 +78,6 @@ key 51    COMMA
 key 52    PERIOD
 key 53    SLASH
 key 28    ENTER
-        
 key 56    ALT_LEFT
 key 100   ALT_RIGHT
 key 42    SHIFT_LEFT
@@ -89,25 +85,22 @@ key 54    SHIFT_RIGHT
 key 15    TAB
 key 57    SPACE
 key 150   EXPLORER
-key 155   ENVELOPE        
-
+key 155   ENVELOPE
 key 12    MINUS
 key 13    EQUALS
 key 215   AT
-
 key 466   DPAD_CENTER       WAKE_DROPPED
 key 528   BACK
-
 #Henry_lin, 20110526, [BugID 153] Implement testing AT command for keypad.
 key 355   CLEAR
 key 78   PLUS
 key 117   EQUALS
 #key 248   WAP
-key 249   KPTT
-key 250   SPK_PHN
-key 251   TASK
-key 252   SYMBAL
-key 253   MESSAGE
+#key 249   KPTT
+#key 250   SPK_PHN
+#key 251   TASK
+#key 252   SYMBAL
+#key 253   MESSAGE
 #Henry_lin, 20110704, [BugID 386]  Implement testing AT(CMEC) command for keypad.
-key 254   CONN_DIS_CMD
-key 507   CONN_EN_CMD
+#key 254   CONN_DIS_CMD
+#key 507   CONN_EN_CMD

@@ -40,7 +40,7 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += device/common/gps/gps.conf_EU:system/etc/gps.conf
 
 # Bluetooth firmware
-$(call inherit-product, device/htc/msm8660-common/bcm_hcd.mk)
+$(call inherit-product, device/dell/msm8660-common/bcm_hcd.mk)
 
 $(call inherit-product-if-exists, hardware/broadcom/wlan/bcmdhd/firmware/bcm4329/device-bcm.mk)
 # Inherit non-open-source blobs.
@@ -53,11 +53,12 @@ DEVICE_PACKAGE_OVERLAYS += device/dell/streakpro/overlay
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/ramdisk/init.streakpro.rc:root/init.streakpro.rc \
     $(LOCAL_PATH)/ramdisk/fstab.streakpro:root/fstab.streakpro \
+    $(LOCAL_PATH)/ramdisk/recovery.fstab:root/recovery.fstab \
     $(LOCAL_PATH)/ramdisk/init.streakpro.usb.rc:root/init.streakpro.usb.rc \
     $(LOCAL_PATH)/ramdisk/ueventd.streakpro.rc:root/ueventd.streakpro.rc \
     $(LOCAL_PATH)/ramdisk/init.qcom.sh:root/init.qcom.sh \
-    $(LOCAL_PATH)/ramdisk/init.chgonly.rc:root/init.chgonly.rc \
-    $(LOCAL_PATH)/ramdisk/default.prop:root/default.prop
+    $(LOCAL_PATH)/ramdisk/init.chgonly.rc:root/init.chgonly.rc
+#    $(LOCAL_PATH)/ramdisk/default.prop:root/default.prop
 
 
 # Some misc configuration files
@@ -71,10 +72,14 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/ffa-keypad.kl:system/usr/keylayout/ffa-keypad.kl \
     $(LOCAL_PATH)/configs/fluid-keypad.kl:system/usr/keylayout/fluid-keypad.kl \
     $(LOCAL_PATH)/configs/matrix-keypad.kl:system/usr/keylayout/matrix-keypad.kl \
+    $(LOCAL_PATH)/configs/atmel-touchscreen.kl:system/usr/keylayout/atmel-touchscreen.kl \
     $(LOCAL_PATH)/configs/ffa-keypad_numeric.kcm.bin:system/usr/keychars/ffa-keypad_numeric.kcm.bin \
     $(LOCAL_PATH)/configs/ffa-keypad_qwerty.kcm.bin:system/usr/keychars/ffa-keypad_qwerty.kcm.bin \
     $(LOCAL_PATH)/configs/fluid-keypad_numeric.kcm.bin:system/usr/keychars/fluid-keypad_numeric.kcm.bin \
     $(LOCAL_PATH)/configs/fluid-keypad_qwerty.kcm.bin:system/usr/keychars/fluid-keypad_qwerty.kcm.bin \
+    $(LOCAL_PATH)/configs/qwerty.kcm.bin:system/usr/keychars/qwerty.kcm.bin \
+    $(LOCAL_PATH)/configs/qwerty2.kcm.bin:system/usr/keychars/qwerty2.kcm.bin \
+    $(LOCAL_PATH)/configs/atmel-touchscreen.idc:system/usr/idc/atmel-touchscreen.idc
 
 # Vold.fstab
 PRODUCT_COPY_FILES += \
@@ -89,8 +94,8 @@ PRODUCT_COPY_FILES += \
 
 
 # Sensor
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/libs/sensors.qcom.so:system/lib/hw/sensors.msm8660.so
+#PRODUCT_COPY_FILES += \
+#    $(LOCAL_PATH)/libs/sensors.qcom.so:system/lib/hw/sensors.msm8660.so
 
 
 # Media Profile
@@ -98,8 +103,8 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/media_profiles.xml:system/etc/media_profiles.xml 
     
 # APN
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/apns-conf.xml:system/etc/apns-conf.xml
+#PRODUCT_COPY_FILES += \
+#    $(LOCAL_PATH)/configs/apns-conf.xml:system/etc/apns-conf.xml
 
 # Permissions
 PRODUCT_COPY_FILES += \
